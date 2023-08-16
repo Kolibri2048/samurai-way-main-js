@@ -3,7 +3,7 @@ import s from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 const Profile = () => {
     return (
-        <div className={s.content}>
+        <div>
             <div>
                 <img src='https://www.photoshopbuzz.com/wp-content/uploads/change-color-part-of-image-psd4.jpg'/>
             </div>
