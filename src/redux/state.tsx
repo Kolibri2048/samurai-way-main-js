@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export type MessageType = {
     id: number;
     message: string;
@@ -16,6 +18,7 @@ export type PostType = {
 
 export type ProfilePageType = {
     posts: Array<PostType>;
+
 };
 
 export type DialogsPageType = {
@@ -28,6 +31,10 @@ export type RootStateType = {
     profilePage: ProfilePageType;
     dialogsPage: DialogsPageType;
 };
+
+
+
+export type addPostType = (postMessage: string) => void
 
 let state: RootStateType = {
     profilePage: {
@@ -57,6 +64,15 @@ let state: RootStateType = {
             { id: 6, message: 'Yo' }
         ]
     },
+}
+
+export let addPost: addPostType = (postMessage: string) => {
+    let newPost: PostType = {
+        id: 5,
+        message: postMessage,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost)
 }
 
 export default state

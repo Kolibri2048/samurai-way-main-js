@@ -5,14 +5,14 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
-import state, {RootStateType} from "./redux/state";
+import state, {addPost, PostType} from "./redux/state";
 
 
+const App  = () => {
 
-const App = (props: RootStateType) => {
-
-    // let message = state.dialogsPage.dialogs
-    // let message2 = state.profilePage.posts[0].message
+    let messageDialogs = state.dialogsPage.dialogs
+    let message2Dialogs = state.dialogsPage.messages
+    let profilePost = state.profilePage.posts
 
     return (
         <BrowserRouter>
@@ -24,13 +24,15 @@ const App = (props: RootStateType) => {
                     <Route
                         path='/dialogs'
                         render={() => <Dialogs
-                            dialogs={props.dialogsPage.dialogs}
-                            messages={props.dialogsPage.messages}
+                            dialogs={messageDialogs}
+                            messages={message2Dialogs}
 
                         />}
                     />
                     <Route path='/profile' render={() =>
-                        <Profile posts={props.profilePage.posts}
+                        <Profile
+                            posts={profilePost}
+                            addPostCallBack={addPost}
                         />}
                     />
 
