@@ -1,4 +1,4 @@
-import exp from "constants";
+import {rerenderEntireTree} from "../render";
 
 export type MessageType = {
     id: number;
@@ -31,7 +31,6 @@ export type RootStateType = {
     profilePage: ProfilePageType;
     dialogsPage: DialogsPageType;
 };
-
 
 
 export type addPostType = (postMessage: string) => void
@@ -73,6 +72,7 @@ export let addPost: addPostType = (postMessage: string) => {
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
 }
 
 export default state

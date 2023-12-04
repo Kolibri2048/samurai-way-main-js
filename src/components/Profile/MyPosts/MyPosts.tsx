@@ -21,6 +21,7 @@ const MyPosts = (props:profileType) => {
     let onAddPost = () => {
         if (newPostEl.current) {
             props.addPostCallBack(newPostEl.current.value)
+            newPostEl.current.value = ''
         }
     }
 
