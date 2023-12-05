@@ -1,7 +1,6 @@
 import React from 'react';
 import MyPosts, {profileType} from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {addPost, updateNewPostText} from "../../redux/state";
 
 const Profile = (props: profileType) => {
 
@@ -10,8 +9,8 @@ const Profile = (props: profileType) => {
             <ProfileInfo />
             <MyPosts profilePage={props.profilePage}
                      newPostText = {props.newPostText}
-                     addPostCallBack={addPost}
-                     updateNewPostText={updateNewPostText}
+                     addPostCallBack={props.addPostCallBack}
+                     updateNewPostText={props.updateNewPostText}
 
             />
         </div>

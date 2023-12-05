@@ -5,10 +5,15 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
-import state, {addPost, PostType, updateNewPostText} from "./redux/state";
+import {StoreType} from "./redux/state";
 
 
-const App  = () => {
+export type PropsTypeStore = {
+    store: StoreType
+}
+
+const App: React.FC<PropsTypeStore> = (props) => {
+    const state = props.store.getState()
 
     let messageDialogs = state.dialogsPage.dialogs
     let message2Dialogs = state.dialogsPage.messages
@@ -34,8 +39,8 @@ const App  = () => {
                         <Profile
                             newPostText={profileNewText}
                             profilePage={profilePost}
-                            addPostCallBack={addPost}
-                            updateNewPostText={updateNewPostText}
+                            addPostCallBack={props.store.addPost.bind(props.store)} // так как мы исп this нужно забайндить
+                            updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                         />}
                     />
 

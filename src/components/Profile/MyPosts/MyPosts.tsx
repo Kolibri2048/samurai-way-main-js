@@ -1,7 +1,7 @@
 import React, {RefObject} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType, ProfilePageType, updateNewPostText} from "../../../redux/state";
+import {PostType} from "../../../redux/state";
 
 
 export type profileType = {
