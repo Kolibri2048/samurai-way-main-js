@@ -1,30 +1,36 @@
 import React, {RefObject} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType, ProfilePageType} from "../../../redux/state";
-import post from "./Post/Post";
+import {PostType, ProfilePageType, updateNewPostText} from "../../../redux/state";
 
 
 export type profileType = {
-    posts: PostType[]
-    addPostCallBack: (message: string) => void
+    profilePage: PostType[]
+    addPostCallBack: () => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
 }
 
 
-const MyPosts = (props:profileType) => {
+const MyPosts = (props: profileType) => {
 
 
-    let postsElement = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount} id={post.id}/>)
+    let postsElement = props.profilePage.map(post => <Post message={post.message} likesCount={post.likesCount}
+                                                           id={post.id}/>)
 
     let newPostEl: RefObject<HTMLTextAreaElement> = React.createRef() //Типизация для ref RefObject<К какому ЭЛ используем>
 
-    let onAddPost = () => {
-        if (newPostEl.current) {
-            props.addPostCallBack(newPostEl.current.value)
-            newPostEl.current.value = ''
-        }
+
+
+    let addPost = () => {
+        props.addPostCallBack()
     }
 
+    let onPostChange = () => {
+        if (newPostEl.current) {
+            props.updateNewPostText(newPostEl.current.value)
+        }
+    }
 
 
     return (
@@ -32,13 +38,14 @@ const MyPosts = (props:profileType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostEl}></textarea>
+                    <textarea ref={newPostEl}
+                              value={props.newPostText}
+                              onChange={onPostChange}/>
                 </div>
                 <div>
-                    <button onClick={onAddPost}>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                     <button>Remove</button>
                 </div>
-
 
 
             </div>
@@ -48,5 +55,6 @@ const MyPosts = (props:profileType) => {
         </div>
     )
 }
+
 
 export default MyPosts

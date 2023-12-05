@@ -1,6 +1,6 @@
 import React, {RefObject} from 'react';
 import s from './../Dialogs.module.css'
-import {addPostType, MessageType} from '../../../redux/state';
+import {MessageType} from '../../../redux/state';
 
 
 

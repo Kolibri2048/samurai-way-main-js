@@ -1,15 +1,19 @@
 import React from 'react';
-import s from './Profile.module.css'
 import MyPosts, {profileType} from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {addPost, ProfilePageType} from "../../redux/state";
+import {addPost, updateNewPostText} from "../../redux/state";
 
 const Profile = (props: profileType) => {
 
     return (
         <div>
             <ProfileInfo />
-            <MyPosts posts={props.posts} addPostCallBack={addPost}   />
+            <MyPosts profilePage={props.profilePage}
+                     newPostText = {props.newPostText}
+                     addPostCallBack={addPost}
+                     updateNewPostText={updateNewPostText}
+
+            />
         </div>
     )
 }
