@@ -39,8 +39,7 @@ const App: React.FC<PropsTypeStore> = (props) => {
                         <Profile
                             newPostText={profileNewText}
                             profilePage={profilePost}
-                            addPostCallBack={props.store.addPost.bind(props.store)} // так как мы исп this нужно забайндить
-                            updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                            dispatch={props.store.dispatch.bind(props.store)} // так как мы исп this нужно забайндить
                         />}
                     />
 

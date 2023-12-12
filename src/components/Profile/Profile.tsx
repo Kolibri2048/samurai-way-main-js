@@ -9,8 +9,7 @@ const Profile = (props: profileType) => {
             <ProfileInfo />
             <MyPosts profilePage={props.profilePage}
                      newPostText = {props.newPostText}
-                     addPostCallBack={props.addPostCallBack}
-                     updateNewPostText={props.updateNewPostText}
+                     dispatch={props.dispatch}
 
             />
         </div>
