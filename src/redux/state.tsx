@@ -1,9 +1,3 @@
-
-
-let rerenderEntireTree = (state: RootStateType) => {
-    console.log('state changing')
-}
-
 export type MessageType = {
     id: number;
     message: string;
@@ -42,27 +36,27 @@ export type StoreType = {
     _callSubscriber: (state: RootStateType) => void,
     subscribe: (observer: () => void) => void,
     getState: () => RootStateType
-    dispatch: (action: AddPostActionType | ChangeNewText) => void
+    dispatch: (action: ReturnType<typeof AddPostAC> |  ReturnType<typeof OnPostChangeAC>) => void
 }
 
 // type AddPostActionType = {
 //     type: 'ADD-POST',
 //     newPostText: string
 // } |
-type AddPostActionType = ReturnType<typeof addPostAC>
+// type AddPostActionType = ReturnType<typeof AddPostAC>
+//
+// type ChangeNewText = ReturnType<typeof OnPostChangeAC>
 
-type ChangeNewText = ReturnType<typeof onPostChangeAC>
+export type ActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof OnPostChangeAC>
 
-export type ActionsTypes = AddPostActionType | ChangeNewText
-
-export const addPostAC = (newPostText: string) => {
+export const AddPostAC = (newPostText: string) => {
     return {
         type: "ADD-POST",
         newPostText: newPostText
     } as const
 }
 
-export const onPostChangeAC = (newText: string) => {
+export const OnPostChangeAC = (newText: string) => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
         newText: newText

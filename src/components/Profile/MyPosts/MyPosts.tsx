@@ -1,7 +1,7 @@
 import React, {RefObject} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionsTypes, addPostAC, PostType} from "../../../redux/state";
+import {ActionsTypes, AddPostAC, PostType} from "../../../redux/state";
 
 
 export type profileType = {
@@ -25,7 +25,7 @@ const MyPosts = (props: profileType) => {
 
     let addPost = () => {
         // props.addPost()
-        props.dispatch(addPostAC(props.newPostText))
+        props.dispatch(AddPostAC(props.newPostText))
     }
 
     let onPostChange = () => {
