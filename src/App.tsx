@@ -5,12 +5,14 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {StoreType} from "./redux/state";
+import {ActionsTypes, DialogType, MessageType, StoreType} from "./redux/state";
 
 
 export type PropsTypeStore = {
     store: StoreType
 }
+
+
 
 const App: React.FC<PropsTypeStore> = (props) => {
     const state = props.store.getState()
@@ -32,7 +34,8 @@ const App: React.FC<PropsTypeStore> = (props) => {
                         render={() => <Dialogs
                             dialogs={messageDialogs}
                             messages={message2Dialogs}
-
+                            newMessageBody={state.dialogsPage.newMessageBody}
+                            dispatch={props.store.dispatch.bind(props.store)}
                         />}
                     />
                     <Route path='/profile' render={() =>
