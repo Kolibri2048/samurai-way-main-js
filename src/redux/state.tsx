@@ -1,3 +1,6 @@
+import {dialogsReducer, OnMessageChangeAC, SendMessage} from "./dialogs-reducer";
+import {AddPostAC, OnPostChangeAC, profileReducer} from "./profile-reducer";
+
 export type MessageType = {
     id: number;
     message: string;
@@ -40,42 +43,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-// type AddPostActionType = {
-//     type: 'ADD-POST',
-//     newPostText: string
-// } |
-// type AddPostActionType = ReturnType<typeof AddPostAC>
-//
-// type ChangeNewText = ReturnType<typeof OnPostChangeAC>
-
 export type ActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof OnPostChangeAC> | ReturnType<typeof OnMessageChangeAC> | ReturnType<typeof SendMessage>
-
-export const AddPostAC = (newPostText: string) => {
-    return {
-        type: "ADD-POST",
-        newPostText: newPostText
-    } as const
-}
-
-export const OnPostChangeAC = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newText: newText
-    } as const
-}
-
-export const OnMessageChangeAC = (newMessageText: string) => {
-    return {
-        type: "UPDATE-NEW-MESSAGE-BODY",
-        body: newMessageText
-    } as const
-}
-
-export const SendMessage = () => {
-    return {
-        type: "SEND-MESSAGE",
-    } as const
-}
 
 
 const store: StoreType = {
@@ -110,6 +78,8 @@ const store: StoreType = {
             newMessageBody: ''
         },
     },
+
+
     _callSubscriber(){
         console.log('state changing')
     },
@@ -124,30 +94,11 @@ const store: StoreType = {
 
 
     dispatch(action) { // {type: 'ADD-POST'}
-        if (action.type === 'ADD-POST' ) {
-            let newPost: PostType = {
-                id: 5,
-                message: action.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-            this._state.dialogsPage.newMessageBody = action.body
-            this._callSubscriber(this._state)
-        }else if (action.type === 'SEND-MESSAGE') {
-            let body = this._state.dialogsPage.newMessageBody
-            this._state.dialogsPage.newMessageBody = ''
-            this._state.dialogsPage.messages.push({id: 7, message: body})
-            this._callSubscriber(this._state)
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+
+        this._callSubscriber(this._state)
     }
-
-
 
 
 }
