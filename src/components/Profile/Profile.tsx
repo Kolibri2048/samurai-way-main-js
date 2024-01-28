@@ -1,16 +1,15 @@
 import React from 'react';
 import MyPosts, {profileType} from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import MyPostsCaontainer from "./MyPosts/MyPostsCaontainer";
+import {PropsTypeStore} from "../../App";
 
-const Profile = (props: profileType) => {
+const Profile:React.FC<PropsTypeStore>= (props) => {
 
     return (
         <div>
             <ProfileInfo />
-            <MyPosts profilePage={props.profilePage}
-                     newPostText = {props.newPostText}
-                     dispatch={props.dispatch}
-
+            <MyPostsCaontainer store={props.store}
             />
         </div>
     )

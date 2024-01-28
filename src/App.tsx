@@ -5,25 +5,28 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {ActionsTypes, DialogType, MessageType, StoreType} from "./redux/state";
+// import {RootStateType, StoreType} from './redux/state';
+import {StoreType} from "./redux/redux-store";
+
 
 
 export type PropsTypeStore = {
     store: StoreType
+
 }
 
 
 
-const App: React.FC<PropsTypeStore> = (props) => {
+const App: React.FC<PropsTypeStore>  = (props) => {
     const state = props.store.getState()
-
     let messageDialogs = state.dialogsPage.dialogs
     let message2Dialogs = state.dialogsPage.messages
-    let profilePost = state.profilePage.posts
-    let profileNewText = state.profilePage.newPostText
+    // let profilePost = state.profilePage.posts
+    // let profileNewText = state.profilePage.newPostText
 
     return (
         <BrowserRouter>
+
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
@@ -40,9 +43,10 @@ const App: React.FC<PropsTypeStore> = (props) => {
                     />
                     <Route path='/profile' render={() =>
                         <Profile
-                            newPostText={profileNewText}
-                            profilePage={profilePost}
-                            dispatch={props.store.dispatch.bind(props.store)} // так как мы исп this нужно забайндить
+                            store={props.store}
+                            // newPostText={profileNewText}
+                            // profilePage={profilePost}
+                            // dispatch={props.store.dispatch.bind(props.store)} // так как мы исп this нужно забайндить
                         />}
                     />
 

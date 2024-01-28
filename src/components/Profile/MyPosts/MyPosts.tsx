@@ -1,14 +1,14 @@
 import React, {RefObject} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import { AddPostAC, } from "../../../redux/profile-reducer";
 import {ActionsTypes, PostType} from "../../../redux/state";
 
 
 export type profileType = {
     profilePage: PostType[]
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
+    addPost: () => void
+    updateNewPostText: (text:string ) => void
 }
 
 
@@ -24,15 +24,16 @@ const MyPosts = (props: profileType) => {
 
 
 
-    let addPost = () => {
-        // props.addPost()
-        props.dispatch(AddPostAC(props.newPostText))
+    let onAddPost = () => {
+        props.addPost()
+
     }
 
     let onPostChange = () => {
-        if (newPostEl.current) {
-            props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: newPostEl.current.value})
-        }
+        let text = newPostEl.current?.value
+        if(text)
+            props.updateNewPostText(text)
+
     }
 
 
@@ -46,7 +47,7 @@ const MyPosts = (props: profileType) => {
                               onChange={onPostChange}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                     <button>Remove</button>
                 </div>
 
