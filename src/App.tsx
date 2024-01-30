@@ -11,19 +11,11 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 
-export type PropsTypeStore = {
-    store: StoreType
-
-}
 
 
 
-const App: React.FC<PropsTypeStore>  = (props) => {
-    const state = props.store.getState()
-    let messageDialogs = state.dialogsPage.dialogs
-    let message2Dialogs = state.dialogsPage.messages
-    // let profilePost = state.profilePage.posts
-    // let profileNewText = state.profilePage.newPostText
+const App = () => {
+
 
     return (
         <BrowserRouter>
@@ -35,18 +27,11 @@ const App: React.FC<PropsTypeStore>  = (props) => {
 
                     <Route
                         path='/dialogs'
-                        render={() => <DialogsContainer
-                            store={props.store}
-                        />}
+                        render={() => <DialogsContainer/>}
                     />
                     <Route path='/profile' render={() =>
-                        <Profile
-                            store={props.store}
-                            // newPostText={profileNewText}
-                            // profilePage={profilePost}
-                            // dispatch={props.store.dispatch.bind(props.store)} // так как мы исп this нужно забайндить
-                        />}
-                    />
+                        <Profile/>
+                    }/>
 
                 </div>
 
