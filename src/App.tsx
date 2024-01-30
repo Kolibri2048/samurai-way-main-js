@@ -7,6 +7,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
 // import {RootStateType, StoreType} from './redux/state';
 import {StoreType} from "./redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 
@@ -34,11 +35,8 @@ const App: React.FC<PropsTypeStore>  = (props) => {
 
                     <Route
                         path='/dialogs'
-                        render={() => <Dialogs
-                            dialogs={messageDialogs}
-                            messages={message2Dialogs}
-                            newMessageBody={state.dialogsPage.newMessageBody}
-                            dispatch={props.store.dispatch.bind(props.store)}
+                        render={() => <DialogsContainer
+                            store={props.store}
                         />}
                     />
                     <Route path='/profile' render={() =>

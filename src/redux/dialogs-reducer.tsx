@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogsPageType, PostType, StoreType} from "./state";
+import {ActionsTypes, DialogsPageType} from "./state";
 
 export const OnMessageChangeAC = (newMessageText: string) => {
     return {
