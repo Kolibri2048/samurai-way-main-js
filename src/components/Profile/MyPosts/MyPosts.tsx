@@ -1,20 +1,15 @@
 import React, {RefObject} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionsTypes, PostType} from "../../../redux/store";
-
-
-export type profileType = {
-    profilePage: PostType[]
-    newPostText: string
-    addPost: () => void
-    updateNewPostText: (text:string ) => void
-}
+import {MyPostPropsType} from "./MyPostsCaontainer";
 
 
 
 
-const MyPosts = (props: profileType) => {
+
+
+
+const MyPosts = (props: MyPostPropsType) => {
 
 
     let postsElement = props.profilePage.map(post => <Post message={post.message} likesCount={post.likesCount}
